@@ -25,6 +25,13 @@ To execute sample `Main` class, run:
 
 ## Build
 
+### Docker Linux x86/64 Build
+
+~~~
+docker build . -t zwave
+docker run -it --rm -v <path to zwave4j>:/build zwave gradle build
+~~~
+
 ### Requirements
 
 1. [JDK 1.7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)

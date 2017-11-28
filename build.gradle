@@ -1,5 +1,5 @@
 apply plugin: "java"
-apply plugin: "maven"
+apply plugin: "maven-publish"
 apply plugin: "application"
 apply plugin: "idea"
 apply plugin: "cpp"
@@ -434,48 +434,14 @@ signing {
     sign configurations.archives
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { signing.signPom(it) }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
 
-            repository(url: "https://oss.sonatype.org/" + (release ? "service/local/staging/deploy/maven2" : "content/repositories/snapshots")) {
-                authentication(userName: sonatypeUsername, password: sonatypePassword)
-            }
-
-            pom.project {
-                packaging "jar"
-                name "ZWave4J"
-                description "ZWave4J is a Java wrapper for Open-ZWave library"
-                url "https://github.com/zgmnkv/zwave4j"
-
-                scm {
-                    url "https://github.com/zgmnkv/zwave4j"
-                    connection "scm:git:https://github.com/zgmnkv/zwave4j"
-                    developerConnection "scm:git:https://github.com/zgmnkv/zwave4j"
-                }
-
-                licenses {
-                    license {
-                        name "MIT License"
-                        url "http://www.opensource.org/licenses/MIT"
-                        distribution "repo"
-                    }
-                }
-
-                developers {
-                    developer {
-                        id "zgmnkv"
-                        name "Alexander Zagumennikov"
-                    }
-                }
-            }
+            artifact sourcesJar
         }
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = "2.13"
 }
 
 idea {
