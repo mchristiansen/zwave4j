@@ -9,7 +9,7 @@ apply plugin: "signing"
 ext {
     openZWaveDir = project.hasProperty("openZWaveDir") ? project.openZWaveDir: "../open-zwave"
 
-    openZWaveConfigDir = project.hasProperty("openZWaveConfigDir") ? project.openZWaveConfigDir: "../open-zwave/config"
+    openZWaveConfigDir = project.hasProperty("openZWaveConfigDir") ? project.openZWaveConfigDir: "$openZWaveDir/config"
     zWaveControllerPort = project.hasProperty("zWaveControllerPort") ? project.zWaveControllerPort: "/dev/ttyUSB0"
 
     release = project.hasProperty("release") ? Boolean.valueOf(project.release) : false

@@ -27,9 +27,22 @@ To execute sample `Main` class, run:
 
 ### Docker Linux x86/64 Build
 
+##### Setup
+
 ~~~
+# Clone open-zwave into directory at root of project
+git clone https://github.com/OpenZWave/open-zwave
+
+# Set openZWaveDir to point to cloned open-zwave
+echo "openZWaveDir=./open-zwave" >> gradle.properties
+
+# Build docker image to use for running build
 docker build . -t zwave
-docker run -it --rm -v <path to zwave4j>:/build zwave gradle build
+~~~
+
+##### Run the build
+~~~
+docker run -it --rm -v $(pwd):/build zwave gradle build
 ~~~
 
 ### Requirements
